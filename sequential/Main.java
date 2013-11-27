@@ -11,8 +11,9 @@ import java.util.Iterator;
 
 public class Main {
 
-    private static Map<Integer,String> movies = new HashMap<Integer,String>();    // movies:  movie_id -> movie_title
-    private static Map<Integer,List<Integer>> ratings = new HashMap<Integer,List<Integer>>(); // ratings: movie_id -> user_rating
+    private static Map<Integer,String> movies = new HashMap<Integer,String>();                // movie_id -> movie_title
+    private static Map<Integer,List<Integer>> ratings = new HashMap<Integer,List<Integer>>(); // movie_id -> list of user ratings
+    private static Map<Integer,Double> avgratings = new HashMap<Integer,Double>();            // movie_id -> average rating
 
     public static void main(String[] args) {
       try {
@@ -66,7 +67,6 @@ public class Main {
           ratings.get(Integer.parseInt(split[1])).add(Integer.parseInt(split[2]));
         }
 
-        //System.out.println(Integer.parseInt(split[1])+" -> "+ratings.get(Integer.parseInt(split[1])));
         i++;
       }
 
@@ -74,19 +74,34 @@ public class Main {
     }
 
     private static void solve() {
-      
+      List<Integer> list;
+      double sum;
+      double avg;
+
+      for (Map.Entry<Integer,List<Integer>> entry : ratings.entrySet()) {
+        list = entry.getValue();
+
+        sum = 0;
+        for(int rating: list)
+          sum = sum+rating;
+
+        avg = sum/list.size();
+        avgratings.put(entry.getKey(), avg);
+      }
+
+      System.out.println("computed average ratings");
     }
 
     private static void testRatingCount() {
-      Iterator<Map.Entry<Integer,List<Integer>>> it = ratings.entrySet().iterator();
+      List<Integer> list;
       int count = 0;
-      while (it.hasNext()) {
-        Map.Entry<Integer,List<Integer>> entry = it.next();
-        List<Integer> list = entry.getValue();
+
+      for (Map.Entry<Integer,List<Integer>> entry : ratings.entrySet()) {
+        list = entry.getValue();
         count += list.size();
-        it.remove(); // avoids a ConcurrentModificationException
       }
-      System.out.println(count);
+
+      System.out.println("rating count: "+count);
     }
 
 }
