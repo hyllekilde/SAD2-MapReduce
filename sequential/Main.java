@@ -1,3 +1,13 @@
+/* *************************************** */
+/* SEQUENTIAL COMPUTATION OF MOVIE RATINGS */
+/* *************************************** */
+
+/*
+TODO: save result in file
+TODO: measure computation time
+TODO: provide file paths as cmd line args
+*/
+
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
