@@ -104,15 +104,12 @@ public class Sequential {
 
   private static void writeOutput() throws IOException {
     PrintWriter writer = new PrintWriter("Sequential.out", "UTF-8");
-    int i = 0;
     
-    for (Map.Entry<Integer,Double> entry : avgratings.entrySet()) {
+    for (Map.Entry<Integer,Double> entry : avgratings.entrySet())
       writer.println(entry.getKey()+": "+entry.getValue());
-      i++;
-    }
 
     writer.close();
-    System.out.println("written "+i+" elements to output");
+    System.out.println("written output to file");
   }
 
   private static void testRatingCount() {
