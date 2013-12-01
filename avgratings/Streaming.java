@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.IOException;
-import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 
 public class Streaming {
 
@@ -87,7 +87,7 @@ public class Streaming {
     }
 
     writer.close();
-    System.out.println("written "+i+"elements to output");
+    System.out.println("written "+i+" elements to output");
   }
 
   private static class UserRating {
