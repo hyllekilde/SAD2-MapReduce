@@ -15,6 +15,7 @@ public class Streaming {
 
   private static List<UserRating> stream = new ArrayList<UserRating>();
   private static Map<Integer,Integer> ratings = new HashMap<Integer,Integer>();
+  private static Map<Integer,Integer> counters = new HashMap<Integer,Integer>();
 
   public static void main(String[] args) {
       try {
@@ -55,7 +56,18 @@ public class Streaming {
     }
 
     private static void solve() {
-
+      int i = 0;
+      for (UserRating userrating : stream) {
+        if(ratings.containsKey(userrating.getMovieId())) {
+          ratings.put(userrating.getMovieId(), ratings.get(userrating.getMovieId()) + userrating.getRating());
+          counters.put(userrating.getMovieId(), counters.get(userrating.getMovieId()) + 1);
+        } else {
+          ratings.put(userrating.getMovieId(), userrating.getRating());
+          counters.put(userrating.getMovieId(), 1);
+        }
+        i++;
+      }
+      System.out.println("solved "+i+" elements in stream");
     }
 
     private static class UserRating {
