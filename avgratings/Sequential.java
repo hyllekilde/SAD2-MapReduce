@@ -19,7 +19,7 @@ import java.nio.file.Paths;
 
 import java.util.Iterator;
 
-public class Main {
+public class Sequential {
 
     private static Map<Integer,String> movies = new HashMap<Integer,String>();                // movie_id -> movie_title
     private static Map<Integer,List<Integer>> ratings = new HashMap<Integer,List<Integer>>(); // movie_id -> list of user ratings
